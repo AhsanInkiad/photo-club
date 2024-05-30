@@ -69,10 +69,24 @@ const Login = () => {
                 //   )
                 // setCount(1);
                 console.log(Guser);
-                setProfile(Guser);
+                
                 setUser(Guser);
-               
-                navigate('/');
+                const saveUser = { name: Guser.displayName, email: Guser.email, photo: Guser.photoURL };
+                fetch('https://photo-club-server-ahsaninkiad.vercel.app/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                            {/* Navigate to homepage when registration is done */ }
+                            navigate('/');
+
+                           
+                       
+                    })
 
 
             })
@@ -80,6 +94,7 @@ const Login = () => {
                 console.log(error);
             })
     }
+
    
     return (
         <div className='flex py-20 '>

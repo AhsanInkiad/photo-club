@@ -10,12 +10,12 @@ const ManageUsers = () => {
     const [status, setStatus] = useState("Student");
     // tanstack query
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users')
+        const res = await fetch('https://photo-club-server-ahsaninkiad.vercel.app/users')
         return res.json();
     })
 
     const handleMakeAdmin = (tab) => {
-        fetch(`http://localhost:5000/users/admin/${tab._id}`, {
+        fetch(`https://photo-club-server-ahsaninkiad.vercel.app/users/admin/${tab._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -38,7 +38,7 @@ const ManageUsers = () => {
     }
 
     const handleMakeInstructor = (tab) => {
-        fetch(`http://localhost:5000/users/instructor/${tab._id}`, {
+        fetch(`https://photo-club-server-ahsaninkiad.vercel.app/users/instructor/${tab._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -59,7 +59,7 @@ const ManageUsers = () => {
                 }
             })
             const saveInstructor = { ins_name: tab.name, ins_email: tab.email, c_name:tab.name, c_image: tab.photo };
-            fetch('http://localhost:5000/addainstructor', {
+            fetch('https://photo-club-server-ahsaninkiad.vercel.app/addainstructor', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
